@@ -78,7 +78,7 @@ def entropy_of_next(string, next_str, str_lim=1000):
         running_sum.append(torch.log(probs[0][-1][token]))
         string += tokenizer.decode(token)
 
-    return (sum(running_sum).item(), len(running_sum))
+    return (-sum(running_sum).item(), len(running_sum))
 
 
 # Returns a vector of entropy values (logit values) for all comprising token(s) of a sequence of next tokens relative to string
@@ -108,13 +108,16 @@ def word_prob(string, next_word):
 # a segment is represented as (speaker, utterance), both strings.
 
 def mutual_info(str1, str2):
-    return entropy_of_next('', str1)[0] + entropy_of_next('', str2)[0] - entropy_of_next(str1, str2)[0]
+    return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
 
 def mutual_infos(segments):
     infos = []
     for i in range(len(segments)):
-        for j in range(i-1):
-            infos.append(mutual_info(segments[i][1], segments[j][1]))
+        infos_i = []
+        for j in range(i+1, len(segments)):
+            infos_i.append(mutual_info(segments[i][1], segments[j][1]))
+        infos.append(infos_i)
+    return infos
 
 if __name__ == '__main__':
     segments = [
