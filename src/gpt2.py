@@ -4,6 +4,21 @@ import time
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import functools
 import re
+import sys
+
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("log.dat", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)  
+
+    def flush(self):
+        self.log.flush()
+
+sys.stdout = Logger()
 
 
 def to_segments(transcript):
@@ -11,7 +26,8 @@ def to_segments(transcript):
     # return re.findall(r'(.*)\s+(\d+:\d+)', transcript, re.MULTILINE)
     # return re.findall(r'([\w ]+)\s+(\d+:\d+)\s+`([^`]+)', transcript, re.MULTILINE)
     segs = re.findall(r'([\w ]+)\s+(\d+:\d+)\s+\n([^\n]+)', transcript, re.MULTILINE)
-    return [(s[0], s[2]) for s in segs]
+    # return [(s[0], s[2]) for s in segs]
+    return segs
 
 
 
@@ -136,12 +152,20 @@ def mutual_infos(segments, back=2):
 
 if __name__ == '__main__':
     transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
-    segments = to_segments(transcript)[:4]
-    print(segments)
+    segments = to_segments(transcript)
+    back = 2
+    for i in range(len(segments)):
+        print('#####################################')
+        speaker, time, text = segments[i]
+        print(i, speaker, time, text)
+        for j in range(max(0, i-back), i):
+            mut = mutual_info(text, segments[j][2])
+            print(j, mut)
+
     # segments = [
     #         ('Bob', "What's up with electric cars these days?"),
     #         ('Joe', "Elon's working on some new stuff with better batteries."),
     #         ('Fred', "It's just the weather changing."),
     #         ('Carol', "Ford and GM are also making more efficient power systems for vehicles.")
     #         ]
-    print(zip(segments, mutual_infos(segments)))
+    # print(zip(segments, mutual_infos(segments)))
