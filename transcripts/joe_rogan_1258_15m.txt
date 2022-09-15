@@ -1,0 +1,188 @@
+
+Joe Rogan  0:00  
+543 dos, uno come on TriCaster live. All right. We're live, ladies and gentlemen, to my left. Tim, Tim Poole. Everybody knows and loves them. vija what is how do i pronounce your last video? Not vija vigia. vilja Gatty. Got it. And your position at Twitter is
+
+Vijaya Gadde  0:29  
+I lead trust and safety, legal and public policy.
+
+Joe Rogan  0:32  
+That's a lot. That's a lot. And Jack Dorsey, please, gentlemen, firstly, of all, thank you, everybody for doing this. Appreciate it. Thank you. It feels, feels also there's tension in the room. We're all loosey goosey just a few minutes ago, tension, everyone's like, Oh, this is really happening. Here we go. Um, before we get started, we should say because there were some things that people wanted to have us talk about. One that the Cash App is one of the sponsors of the podcast. It's been a sponsor for a long time. And also a giant supporter of my good friend, Justin runs fight for the Forgotten charity building wells for the pygmies in the Congo. This is very important to me, and I'm very happy that you guys are a part of that. And you are connected to that. I don't. That's mean, it's easy for someone to say that doesn't have an influence on the way we discuss things, but it doesn't. So if it does, I don't know what to tell you.
+
+Tim Pool  1:25  
+I'm gonna mention to just because I don't want people to come out and freak out later actually have like, 80 shares in square, which isn't really that much. But, but it's something it is it is. So I don't want people to think, you know, whatever. You're the CEO of square, I think, right? Yep. Yeah.
+
+Jack Dorsey  1:40  
+We only cash out.
+
+Joe Rogan  1:41  
+And the reason why we decided to come together is we had, I thought, a great conversation last time. But there's a lot of people that were upset that there were some issues that we didn't discuss or didn't discuss in depth enough, or they felt that I didn't press you enough. I talked to Tim, because, you know, Tim and I have talked before and he made a video about it. And I felt like his criticism was very valid. So we got on the phone, and we talked about it. And I knew immediately within the first few minutes of the conversation that he was far more educated about this than I was. So I said, Would you be willing to do a podcast and perhaps do a podcast with Jack? And he said, absolutely. So we did a podcast together, it was really well received, people felt like we covered a lot of the issues that they felt like I didn't bring up. And so then Jack and I discussed it, and we said, well, let's bring Tim on and then have vigia on as well. I said that right? Yep. That's a hard one. Sorry. I'll get everybody a promise. But so we're here we go. Today, you know, do you know who Shaun Baker is? He's a doctor who's a prominent proponent of the carnivore diet. His post was his account was frozen today. I just sent it to Jamie. Yeah, his account was frozen today, because of an image that he had, because he's a proponent of the carnivore diet. There's a lot of people that believe that this elimination diet is very healthy for you. And it's known to cure a lot of autoimmune issues with certain people, but some people ideologically oppose it, because they think it's bad for the environment, or you shouldn't eat meat, or whatever the reasons are.
+
+Jack Dorsey  3:13  
+This is huge in the Bitcoin community.
+
+Joe Rogan  3:15  
+Yes, yeah. Well, it's for a lot of people that have autoimmune issues with particularly psoriasis. And arthritis is is a lifesaver. It's crazy. It's essentially, it's an autoimmune issue. So because he has a photo of a lion in a header, eating a looks like a will to beasts or something like that, his account was locked for violating his rule rules against graphic violence or adult content in profile images. That seems a little silly. And I wanted to just mention that right away now, whose decision is something like that, like, who decides to lock a guy's account out, because it has a nature image if you know, natural predatory behavior.
+
+Vijaya Gadde  3:57  
+On this particular case, it's probably an algorithm that detected it and made some sort of an assessment. But as a general rule, how we operate as a company is we rely on people to report information to us. So if you look at any tweet, you can kind of pull down on that carrot on the right, and you can say report the tweet. And then you have a bunch of categories, you can choose from what you want to report. I think this one in particular, though, it's probably an algorithm.
+
+Joe Rogan  4:20  
+So how does does it? Does he have the option to protest that or to ask someone to review it?
+
+Vijaya Gadde  4:27  
+Absolutely. And I'm guessing that people are already reviewing it, but there's a choice to appeal any action and that would go to a human to make sure that it is actually a violation of the rules? Or in this case, if it's not, then it would be removed.
+
+Joe Rogan  4:40  
+Is that a violation of the rules? Image?
+
+Vijaya Gadde  4:42  
+I don't think so. I don't think that that would be what we're trying to capture in terms of graphic images and an avatar. It's more about violence towards humans unless it was some sort of cruelty depicting walls or something like that. But this seems not the intention of the rule
+
+Joe Rogan  4:56  
+does this this one of the reason why I wanted to bring this up immediately does this highlight a flaw in the system in that people can target an individual because with him, he's a, he, like I said, he's a doctor and a proponent of this carnivore diet, but he's also he ruthless in his condemnation and mocking of vegans, he does it all the time. And so then they get upset at him, and they can target posts and just report them in mass. And when they do that, then this becomes an issue.
+
+Vijaya Gadde  5:26  
+I think this does reveal part of, you know, the challenges that we face as a global platform at scale. And this, I don't I don't know what happened in this case, sorry, it's hard for me to talk about it. But what I would say is, that doesn't really matter if one person reports it or 10,000, people report it, like we're going to review the reports and we're going to make an assessment. And we're never going to, you know, kick someone off the platform finally, and forever without a person taking a look and making sure that it's an actual violation. Okay,
+
+Jack Dorsey  5:56  
+so the put the mob reporting behavior does happen. Yeah, it does. It happens across the spectrum,
+
+Tim Pool  6:02  
+I'd have to assume it's going to be one direction, I can't imagine he would target vegans, but vegans would target him, right? Well, he
+
+Joe Rogan  6:08  
+might. I mean, he doesn't,
+
+Tim Pool  6:09  
+but is he the kind of guy who's gonna want to report to vegans and get them banned from Twitter, of course, you're gonna want to make fun of them
+
+Joe Rogan  6:14  
+he's gonna make fun of them, 
+
+Tim Pool  6:15  
+they're gonna target him to try and get him removed by exploiting the system that you guys have,
+
+Vijaya Gadde  6:19  
+and may not be him, though. It could also be his followers. It's a really complicated world out there. So you don't the motivations of why people might report are different. And it's not always under someone's control.
+
+Joe Rogan  6:30  
+It could easily even be other carnivore diet proponents who are just jerks that don't like him, because he's getting all the love. People are weird. Yeah, but it's just the idea, though, is that it does kind of highlight a bit of a flaw in that it's good that someone can like because you might see something awful, someone Doxing someone or something like that. And then you can take that and report it, and then people can see it and get rid of it and minimize the damage. That's done.
+
+Tim Pool  6:56  
+There's another big problem here. And that is the carnivore diet legitimately healthy. Is it a threat to your health? And if it is, is what is Twitter's responsibility in controlling that information? Right. So just to clarify, my my opinion is, if he wants to be a proponent for the carnivore diet, let him but you've got people on YouTube who are being de-ranked for certain beliefs about certain health issues that I don't agree with. And so one of the risks that is, you know, we're coming towards a position where people think some ideas are better than others. Therefore, as a company, we're going to restrict access to certain information. You mean, like anti Vax? Exactly. Right. So I guess I'm trying to say is, at what would you guys restrict someone from sharing info, like false information about vaccines that could get someone hurt?
+
+Vijaya Gadde  7:39  
+That is not a violation of Twitter's rules? No,
+
+Jack Dorsey  7:42  
+I think, I mean, I'd be interested to hear your ideas around this. But our, our perspective right now is around this concept of variety perspective. Like, are we? are we encouraging more echo chambers and filter bubbles? Or are we at least showing people other information that might be counter to what they see? And there's, there's a bunch of research, which suggests that further and Bolton's or views, there's also research that would suggest that it at least gives them a consideration about what their what they currently believe. So would you guys sorry, given the dynamics of our network being completely public, we're not organized around communities, we're not organized around topics. We have a little bit more freedom to show more of the spectrum of any one particular issue. And I think that's how we would we would approach it from the start. That said, we haven't really dealt much with misinformation more broadly across like, these sorts of topics. We've we've focused our efforts on elections, and well, mainly election, try now.
+
+Joe Rogan  8:46  
+YouTube is a different animal, you know, someone can really convince you that the earth is flat. If you're gullible, and you watch a 45 minute YouTube video, right now, it's kind of a different thing.
+
+Tim Pool  8:56  
+But I want to I wanted to just kind of get into that statement you made about misinformation and whether or not you'll police it.
+
+Vijaya Gadde  9:02  
+So I think that the tough part of this is really in love to have a discussion about this is do you really want corporations to police? What's true and not true? Absolutely. That's a really, really tough position. 
+
+Tim Pool  9:12  
+But you guys do that. 
+
+Vijaya Gadde  9:13  
+We try not to do that. We don't want to do that. 
+
+Tim Pool  9:15  
+But you do in your rules, 
+
+Vijaya Gadde  9:17  
+but the places that we focus on is where we think that people are going to be harmed by this in a direct and tangible way, that we feel a responsibility to correct ourselves in your
+
+Joe Rogan  9:27  
+When you say in you rules. Tim, what do you mean by that? 
+
+Tim Pool  9:28  
+Dead Naming and misgendering
+
+Joe Rogan  9:29  
+dead naming and misgendering
+
+Tim Pool  9:31  
+that's a specific ideology that's unique to a very small faction of people in this world that you guys actually banned people for.
+
+Vijaya Gadde  9:37  
+So the way I think of it is its behavior based. And I know you think of it as content and we can we can disagree on this point. But this is about why are you doing this to a trans person? Why are you calling them by this name when they've chosen to go by a different name? Or why are you outing them in some way? Like what is your intent and purpose behind that?
+
+Joe Rogan  9:55  
+I don't mean to interrupt, but in the interest of clarity, I want to explain what dead naming means Right, right. So
+
+Tim Pool  10:02  
+that so a transgender individual changes their name when they transition, a dead name would be their birth name or the name that went by before the transition. So
+
+Joe Rogan  10:10  
+yes, my mom's probably going what? And whenever the text what's a dead name?
+
+Tim Pool  10:15  
+And I will clarify to your rules, specifically targeted misgendering. And naming, I believe,
+
+Vijaya Gadde  10:19  
+is correct, right. So years ago, we we passed a policy that we call our hateful conduct policy, and that prohibits targeting or attacking someone based on their belonging, and in any number of groups, whether it's because of their religion, or their race, or their gender, their sexual orientation, their gender identity. So it was something that's broad based is that you can't choose to attack people because of these characteristics. 
+
+Tim Pool  10:41  
+But you do have limits on what characteristics you police. Right? So you're not you're not banning people for targeted trans species, others, right?
+
+Vijaya Gadde  10:48  
+Well, we have also general abuse and harassment rules, right, which says you can't engage in abuse and harassment on the platform,
+
+Joe Rogan  10:54  
+but you can't dead name someone but you can call them stupid.
+
+Vijaya Gadde  10:58  
+Generally, I mean, if you created an account that only was there to call the same person, stupid 5000 times, we'd probably view that as the, you know, 
+
+Joe Rogan  11:07  
+targeted, harass 
+
+Vijaya Gadde  11:08  
+targeted harassment,
+
+Jack Dorsey  11:10  
+it's a function of the bid. It's unfortunate behavior, because people with our system can do this in massive velocity. So ultimately silence you from a platform or just say, like, I give up, I don't want to deal with this thing. Um, I'm,
+
+Tim Pool  11:22  
+also there's so we can just get into all of the big examples. I mean, starting with
+
+Vijaya Gadde  11:27  
+to Tim, but can we just take a step back and try to level set what we're trying to do with our policies? I think it's worth Yes, yes. So as a as a high level, I personally, and this is my job to run the policy team, I believe that everyone has a voice and should be able to use it. And I want them to be able to use it online. Now, where we draw a line is when people use their voice, and use their platform, to abuse harass other people to silence them. Because I think that that's what we've seen over the years is a number of people who have been silenced online because of the abuse and harassment they've received. And they either stop talking, or they leave the platform in its entirety. If you look at free expression and free speech laws around the world, they're not absolute. They're not absolute. There's always limitations on what you can say. And it's when you're starting to endanger other people.
+
+Tim Pool  12:12  
+So my question then is, when I was physically threatened on Twitter, you guys refuse to take down the tweet. And I showed up in Berkeley, and someone physically threatened me because they were encouraged to when I was in Venezuela, I was physically threatened by high profile individual 10,000 people tweeting at me, you guys do nothing. Right. So I guess there's the obvious question of Why does it always feel like your policies are going one direction politically, you say it's about behavior. You've said it several times already. But I've already I've got tons of examples of that not being the case. 
+
+Vijaya Gadde  12:40  
+And you will always be able to find those examples, examples
+
+Tim Pool  12:43  
+where you guys were alerted multiple times, and did nothing like when Antifa doxxed, a bunch of law enforcement agents, some of the tweets were removed. But since September, this tweet is still live with a list of private phone numbers addresses yet Kathy Griffin, she's fine. The guy who threatened the lives of these kids in Covington, and said lock them in school and burn it down. You did nothing. I mean, he got suspended it take his tweets down. Was he banned for threatening the lives of kids? Absolutely not.
+
+Vijaya Gadde  13:09  
+So again, we have an I'm, I'm happy to talk about all these details. We have our policies that are meant to protect people. And they're meant to enable free expression as long as you're not trying to silence somebody else. Now, we take a variety of different enforcement mechanisms around that. Sometimes you get warned, sometimes we're your tweet is forced to be deleted. It's a very rare occasion where we will outright suspend someone without any sort of warning, or any sort of ability to understand what happened.
+
+Joe Rogan  13:36  
+What did you guys do with Kathy Griffin when she was saying she wanted the names of those young kids were in the Magga hats at the Covington high school
+
+Vijaya Gadde  13:43  
+camp. That's a that's a great example, Joe. So in that particular case, you know, our Doxing policy really focuses on posting private information, which we don't consider names to be private, we consider your home address, your home phone, your home phone number, your mobile phone number, those types of things to be private. So in that particular case, we took what I think now is probably a very literal interpretation of our policy. And so that that was not a Doxing incident.
+
+Joe Rogan  14:06  
+Do you think that was an error?
+
+Vijaya Gadde  14:08  
+I think that it was short sighted and given the context of what was going on there that if I was doing this all over again, I would probably ask my team to look at that through the lens of what was the purpose behind that tweet. And if the purpose was in fact, to identify these kids to either Dox them or abuse and harass them, which it probably was, then we should be taking a more expansive view of of that policy and including that type of content,
+
+Joe Rogan  14:30  
+especially considering the fact they're minors. I mean, I would think that right away, that would be like the approach. So this is trial and error, sort of learn and move on with new information, sort of a deal?
+
+Vijaya Gadde  14:40  
+Absolutely. We're gonna learn we're gonna make a ton of mistakes. We're trying to do this, with hundreds of millions of accounts, all around the world, numerous languages, were going to make mistakes. Even if we get better. There will always be mistakes, but we're hoping to learn from those and to make ourselves better and to catch cases like Tim's or others, where we clearly may have made an error
+
+

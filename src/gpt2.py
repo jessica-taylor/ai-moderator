@@ -2,6 +2,19 @@ import torch
 import math
 import time
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
+import functools
+import re
+
+
+def to_segments(transcript):
+    # transcript = transcript.replace('\n', '`')
+    # return re.findall(r'(.*)\s+(\d+:\d+)', transcript, re.MULTILINE)
+    # return re.findall(r'([\w ]+)\s+(\d+:\d+)\s+`([^`]+)', transcript, re.MULTILINE)
+    segs = re.findall(r'([\w ]+)\s+(\d+:\d+)\s+\n([^\n]+)', transcript, re.MULTILINE)
+    return [(s[0], s[2]) for s in segs]
+
+
+
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
@@ -9,6 +22,7 @@ model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 # Returns tokenized version of string for debugging
 def tokenize(string):
+    print([tokenizer.decode(i) for i in tokenizer.encode(string)])
     return [tokenizer.decode(i) for i in tokenizer.encode(string)]
 
 
@@ -50,6 +64,7 @@ def greedy_seq(string, seq_len):
 
 
 # Returns the entropy value (mean of logit values of comprising token(s)) for a sequence of next tokens relative to string, and number of tokens
+@functools.cache
 def entropy_of_next(string, next_str, str_lim=1000):
     # if string == "":
     #     tokens = tokenizer.encode(next_str)
@@ -110,19 +125,23 @@ def word_prob(string, next_word):
 def mutual_info(str1, str2):
     return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
 
-def mutual_infos(segments):
+def mutual_infos(segments, back=2):
     infos = []
     for i in range(len(segments)):
         infos_i = []
-        for j in range(i+1, len(segments)):
-            infos_i.append(mutual_info(segments[i][1], segments[j][1]))
+        for j in range(max(0, i-back), i):
+            infos_i.append(mutual_info(segments[j][1], segments[i][1]))
         infos.append(infos_i)
     return infos
 
 if __name__ == '__main__':
-    segments = [
-            ('Bob', "What's up with electric cars these days?"),
-            ('Joe', "Elon's working on some new stuff with better batteries."),
-            ('Fred', "It's just the weather changing.")
-            ]
-    print(mutual_infos(segments))
+    transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
+    segments = to_segments(transcript)[:4]
+    print(segments)
+    # segments = [
+    #         ('Bob', "What's up with electric cars these days?"),
+    #         ('Joe', "Elon's working on some new stuff with better batteries."),
+    #         ('Fred', "It's just the weather changing."),
+    #         ('Carol', "Ford and GM are also making more efficient power systems for vehicles.")
+    #         ]
+    print(zip(segments, mutual_infos(segments)))
