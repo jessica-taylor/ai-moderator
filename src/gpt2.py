@@ -5,6 +5,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import functools
 import re
 import sys
+import numpy as np
 
 class Logger(object):
     def __init__(self):
@@ -35,6 +36,13 @@ def to_segments(transcript):
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 
+def score(string):
+    tensor = tokenizer.encode(string, return_tensors="pt")
+    loss=model(tensor, labels=tensor)[0]
+    return loss.cpu().detach().numpy()
+
+def rel_score(prompt, text):
+    return score(prompt + ' ' + text) - score(text)
 
 # Returns tokenized version of string for debugging
 def tokenize(string):
@@ -97,6 +105,8 @@ def entropy_of_next(string, next_str, str_lim=1000):
     if string == '':
         string = 'text:'
 
+    print('ENTROPY OF NEXT', string, '|||', next_str)
+
 
 
     next_tokens = tokenizer.encode(next_str)
@@ -106,6 +116,7 @@ def entropy_of_next(string, next_str, str_lim=1000):
         if len(string) > 200:
             string = string[string[-200:].find("."):]
         probs = get_probs(string)
+        print('PROBS', string, token)
         running_sum.append(torch.log(probs[0][-1][token]))
         string += tokenizer.decode(token)
 
@@ -139,7 +150,8 @@ def word_prob(string, next_word):
 # a segment is represented as (speaker, utterance), both strings.
 
 def mutual_info(str1, str2):
-    return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
+    # return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
+    return rel_score('text:', str2) - rel_score('text: ' + str1, str2)
 
 def mutual_infos(segments, back=2):
     infos = []
@@ -159,7 +171,7 @@ if __name__ == '__main__':
         speaker, time, text = segments[i]
         print(i, speaker, time, text)
         for j in range(max(0, i-back), i):
-            mut = mutual_info(text, segments[j][2])
+            mut = mutual_info(segments[j][2], text)
             print(j, mut)
 
     # segments = [
