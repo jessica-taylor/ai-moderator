@@ -46,7 +46,6 @@ def rel_score(prompt, text):
 
 # Returns tokenized version of string for debugging
 def tokenize(string):
-    print([tokenizer.decode(i) for i in tokenizer.encode(string)])
     return [tokenizer.decode(i) for i in tokenizer.encode(string)]
 
 
@@ -105,7 +104,7 @@ def entropy_of_next(string, next_str, str_lim=1000):
     if string == '':
         string = 'text:'
 
-    print('ENTROPY OF NEXT', string, '|||', next_str)
+    # print('ENTROPY OF NEXT', string, '|||', next_str)
 
 
 
@@ -116,7 +115,7 @@ def entropy_of_next(string, next_str, str_lim=1000):
         if len(string) > 200:
             string = string[string[-200:].find("."):]
         probs = get_probs(string)
-        print('PROBS', string, token)
+        # print('PROBS', string, token)
         running_sum.append(torch.log(probs[0][-1][token]))
         string += tokenizer.decode(token)
 
@@ -150,8 +149,8 @@ def word_prob(string, next_word):
 # a segment is represented as (speaker, utterance), both strings.
 
 def mutual_info(str1, str2):
-    # return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
-    return rel_score('text:', str2) - rel_score('text: ' + str1, str2)
+    return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
+    # return rel_score('text:', str2) - rel_score('text: ' + str1, str2)
 
 def mutual_infos(segments, back=2):
     infos = []
@@ -165,6 +164,12 @@ def mutual_infos(segments, back=2):
 if __name__ == '__main__':
     transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
     segments = to_segments(transcript)
+    ## segments = [
+    ##         ('Bob', '...', "What's up with electric cars these days?"),
+    ##         ('Joe', '...', "Elon's working on some new stuff with better batteries."),
+    ##         ('Fred', '...', "It's just the weather changing."),
+    ##         ('Carol', '...', "Ford and GM are also making more efficient power systems for vehicles.")
+    ##         ]
     back = 2
     for i in range(len(segments)):
         print('#####################################')
@@ -174,10 +179,4 @@ if __name__ == '__main__':
             mut = mutual_info(segments[j][2], text)
             print(j, mut)
 
-    # segments = [
-    #         ('Bob', "What's up with electric cars these days?"),
-    #         ('Joe', "Elon's working on some new stuff with better batteries."),
-    #         ('Fred', "It's just the weather changing."),
-    #         ('Carol', "Ford and GM are also making more efficient power systems for vehicles.")
-    #         ]
     # print(zip(segments, mutual_infos(segments)))
