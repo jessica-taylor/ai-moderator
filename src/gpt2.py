@@ -6,6 +6,8 @@ import functools
 import re
 import sys
 import numpy as np
+from datasets import load_dataset
+from tqdm import tqdm
 
 class Logger(object):
     def __init__(self):
@@ -22,6 +24,46 @@ class Logger(object):
 sys.stdout = Logger()
 
 
+
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
+
+def surprisal(string):
+    # https://huggingface.co/docs/transformers/perplexity
+    encodings = tokenizer(string, return_tensors='pt')
+    max_length = model.config.n_positions
+    stride = 512
+    seq_len = encodings.input_ids.size(1)
+    nlls = []
+    prev_end_loc = 0
+    # for begin_loc in tqdm(range(0, seq_len, stride)):
+    for begin_loc in range(0, seq_len, stride):
+        end_loc = min(begin_loc + max_length, seq_len)
+        trg_len = end_loc - prev_end_loc  # may be different from stride on last loop
+        input_ids = encodings.input_ids[:, begin_loc:end_loc]
+        target_ids = input_ids.clone()
+        target_ids[:, :-trg_len] = -100
+
+        with torch.no_grad():
+            outputs = model(input_ids, labels=target_ids)
+
+            # loss is calculated using CrossEntropyLoss which averages over input tokens.
+            # Multiply it with trg_len to get the summation instead of average.
+            # We will take average over all the tokens to get the true average
+            # in the last step of this example.
+            neg_log_likelihood = outputs.loss * trg_len
+
+        nlls.append(neg_log_likelihood)
+
+        prev_end_loc = end_loc
+        if end_loc == seq_len:
+            break
+
+    return torch.stack(nlls).sum().item()
+
+
 def to_segments(transcript):
     # transcript = transcript.replace('\n', '`')
     # return re.findall(r'(.*)\s+(\d+:\d+)', transcript, re.MULTILINE)
@@ -30,60 +72,6 @@ def to_segments(transcript):
     # return [(s[0], s[2]) for s in segs]
     return segs
 
-
-
-
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-model = GPT2LMHeadModel.from_pretrained('gpt2')
-
-def score(string):
-    tensor = tokenizer.encode(string, return_tensors="pt")
-    loss=model(tensor, labels=tensor)[0]
-    return loss.cpu().detach().numpy()
-
-def rel_score(prompt, text):
-    return score(prompt + ' ' + text) - score(text)
-
-# Returns tokenized version of string for debugging
-def tokenize(string):
-    return [tokenizer.decode(i) for i in tokenizer.encode(string)]
-
-
-# Returns raw predictions for next token relative to string
-def get_logits(string):
-    inputs = tokenizer(string, return_tensors="pt")
-    outputs = model(**inputs, labels=inputs["input_ids"])
-
-    logits = outputs.logits
-
-    return logits
-
-
-# Returns probabilities for next token relative to string
-def get_probs(string):
-    inputs = tokenizer(string, return_tensors="pt")
-    outputs = model(**inputs, labels=inputs["input_ids"])
-
-    probs = torch.nn.Softmax(dim=2)(outputs.logits)
-
-    return probs
-
-
-# Returns the most likely next token relative to string
-def most_prob_cont(string):
-    probs = get_probs(string)
-
-    return tokenizer.decode(torch.argmax(probs[0][-1])), torch.log(torch.max(probs[0][-1]))
-
-
-# Returns the greedy sequence continuation of length seq_len relative to string
-def greedy_seq(string, seq_len):
-    model = GPT2LMHeadModel.from_pretrained("gpt2", pad_token_id=tokenizer.eos_token_id)
-
-    inputs = tokenizer.encode(string, return_tensors="pt")
-    outputs = model.generate(inputs, max_length=seq_len+len(inputs[0]))
-
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 
 # Returns the entropy value (mean of logit values of comprising token(s)) for a sequence of next tokens relative to string, and number of tokens
@@ -106,51 +94,27 @@ def entropy_of_next(string, next_str, str_lim=1000):
 
     # print('ENTROPY OF NEXT', string, '|||', next_str)
 
+    return surprisal(string + ' ' + next_str) - surprisal(string)
 
 
-    next_tokens = tokenizer.encode(next_str)
+    # next_tokens = tokenizer.encode(next_str)
 
-    running_sum = []
-    for token in next_tokens:
-        if len(string) > 200:
-            string = string[string[-200:].find("."):]
-        probs = get_probs(string)
-        # print('PROBS', string, token)
-        running_sum.append(torch.log(probs[0][-1][token]))
-        string += tokenizer.decode(token)
+    # running_sum = []
+    # for token in next_tokens:
+    #     if len(string) > 200:
+    #         string = string[string[-200:].find("."):]
+    #     probs = get_probs(string)
+    #     # print('PROBS', string, token)
+    #     running_sum.append(torch.log(probs[0][-1][token]))
+    #     string += tokenizer.decode(token)
 
-    return (-sum(running_sum).item(), len(running_sum))
+    # return (-sum(running_sum).item(), len(running_sum))
 
-
-# Returns a vector of entropy values (logit values) for all comprising token(s) of a sequence of next tokens relative to string
-def entropy_of_next_full(string, next_str):
-    probs = get_probs(string)
-
-    next_tokens = tokenizer.encode(next_str)
-
-    running_sum = []
-    for token in next_tokens:
-        running_sum.append(torch.log(probs[0][-1][token]))
-
-        string += tokenizer.decode(token)
-        probs = get_probs(string)
-
-    return running_sum
-
-
-# Returns the probability of next_word being continuation to string
-def word_prob(string, next_word):
-    probs = get_probs(string)
-
-    next_token = tokenizer.encode(next_word)
-
-    return torch.mean(probs[0][-1][next_token]).item()
 
 # a segment is represented as (speaker, utterance), both strings.
 
 def mutual_info(str1, str2):
-    return entropy_of_next('text:', str2)[0] - entropy_of_next('text: ' + str1, str2)[0]
-    # return rel_score('text:', str2) - rel_score('text: ' + str1, str2)
+    return surprisal(str1) + surprisal(str2) - surprisal(str1 + ' ' + str2)
 
 def mutual_infos(segments, back=2):
     infos = []
@@ -164,12 +128,12 @@ def mutual_infos(segments, back=2):
 if __name__ == '__main__':
     transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
     segments = to_segments(transcript)
-    ## segments = [
-    ##         ('Bob', '...', "What's up with electric cars these days?"),
-    ##         ('Joe', '...', "Elon's working on some new stuff with better batteries."),
-    ##         ('Fred', '...', "It's just the weather changing."),
-    ##         ('Carol', '...', "Ford and GM are also making more efficient power systems for vehicles.")
-    ##         ]
+    # segments = [
+    #         ('Bob', '...', "What's up with electric cars these days?"),
+    #         ('Joe', '...', "Elon's working on some new stuff with better batteries."),
+    #         ('Fred', '...', "It's just the weather changing."),
+    #         ('Carol', '...', "Ford and GM are also making more efficient power systems for vehicles.")
+    #         ]
     back = 2
     for i in range(len(segments)):
         print('#####################################')

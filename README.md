@@ -2,4 +2,4 @@
 
 ## Setup
 
-    pip3 install torch transformers numpy
+    pip3 install torch transformers numpy datasets tqdm
