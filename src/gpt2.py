@@ -30,6 +30,7 @@ model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 transcript = open('transcripts/joe_rogan_1258_15m.txt').read()
 
+@functools.cache
 def surprisal(string):
     # https://huggingface.co/docs/transformers/perplexity
     encodings = tokenizer(string, return_tensors='pt')
@@ -75,7 +76,6 @@ def to_segments(transcript):
 
 
 # Returns the entropy value (mean of logit values of comprising token(s)) for a sequence of next tokens relative to string, and number of tokens
-@functools.cache
 def entropy_of_next(string, next_str, str_lim=1000):
     # if string == "":
     #     tokens = tokenizer.encode(next_str)
